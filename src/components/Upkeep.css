@@ -1,0 +1,77 @@
+.upkeep { background: var(--paper); }
+
+.upkeep__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  padding-bottom: clamp(2.6rem, 5.5vw, 4.2rem);
+}
+.upkeep__title { font-size: var(--fs-h1); margin-top: clamp(0.9rem, 2vw, 1.4rem); }
+.upkeep__lead { padding-bottom: 0.3rem; }
+
+.upkeep__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(1.2rem, 2.6vw, 2rem);
+  align-items: stretch;
+}
+
+.cycle {
+  display: grid;
+  gap: clamp(1.2rem, 2.6vw, 2rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cycle li {
+  padding: clamp(1.4rem, 2.6vw, 2rem);
+  border-radius: var(--radius-xl);
+  background: var(--paper-mist);
+  transition: background 0.4s var(--ease-soft), transform 0.5s var(--ease);
+}
+.cycle li:hover { background: var(--blue-100); transform: translateY(-4px); }
+.cycle__icon {
+  display: grid;
+  place-items: center;
+  width: 46px; height: 46px;
+  margin-bottom: 1rem;
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--blue-700);
+}
+.cycle h3 { font-size: var(--fs-h3); margin-bottom: 0.5rem; }
+.cycle p { font-size: var(--fs-small); line-height: 1.65; color: var(--ink-soft); }
+
+.overtime {
+  padding: clamp(1.5rem, 2.8vw, 2.2rem);
+  border-radius: var(--radius-xl);
+  background: var(--green-100);
+}
+.overtime__icon {
+  display: grid;
+  place-items: center;
+  width: 46px; height: 46px;
+  margin-bottom: 1rem;
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--green-800);
+}
+.overtime h3 { font-size: var(--fs-h3); margin-bottom: 1.1rem; }
+.overtime ul { list-style: none; margin: 0; padding: 0; }
+.overtime li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.7rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid rgba(92, 129, 32, 0.22);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.overtime li svg { color: var(--green-800); margin-top: 0.22rem; }
+
+@media (max-width: 960px) {
+  .upkeep__head { grid-template-columns: 1fr; align-items: start; }
+  .upkeep__body { grid-template-columns: 1fr; }
+}

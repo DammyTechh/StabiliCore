@@ -1,0 +1,121 @@
+.fs {
+  position: relative;
+  display: grid;
+  place-items: center;
+  perspective: 1500px;
+  perspective-origin: 50% 46%;
+  isolation: isolate;
+}
+
+/* cool light pooling behind the shell */
+.fs__halo {
+  position: absolute;
+  inset: 4% -70% 6%;
+  z-index: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(42% 44% at 50% 44%, rgba(60, 140, 209, 0.3), transparent 72%),
+    radial-gradient(62% 58% at 52% 58%, rgba(148, 192, 61, 0.18), transparent 74%);
+  filter: blur(48px);
+  animation: fs-pulse 11s var(--ease-soft) infinite;
+}
+.fs--deep .fs__halo {
+  background:
+    radial-gradient(46% 46% at 50% 44%, rgba(143, 191, 230, 0.34), transparent 72%),
+    radial-gradient(64% 58% at 52% 58%, rgba(182, 215, 119, 0.2), transparent 74%);
+}
+
+.fs__body {
+  position: relative;
+  z-index: 2;
+  transform-style: preserve-3d;
+  transform:
+    translate3d(var(--px, 0px), var(--py, 0px), 0)
+    rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg));
+  will-change: transform;
+}
+
+.fs__drift {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: fs-drift 14s ease-in-out infinite;
+}
+
+.fs__img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  filter:
+    drop-shadow(0 32px 44px rgba(15, 40, 60, 0.3))
+    drop-shadow(0 5px 11px rgba(15, 40, 60, 0.2));
+}
+.fs--deep .fs__img {
+  filter:
+    drop-shadow(0 34px 48px rgba(4, 18, 30, 0.52))
+    drop-shadow(0 5px 12px rgba(4, 18, 30, 0.4));
+}
+
+/* silhouette-locked highlight that tracks the tilt */
+.fs__sheen {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(222, 237, 249, 0.3) var(--sheen, 50%),
+    transparent 72%
+  );
+  -webkit-mask-image: var(--mask);
+  mask-image: var(--mask);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mix-blend-mode: screen;
+  opacity: 0.9;
+}
+
+.fs__ground {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  bottom: 0;
+  width: 86%;
+  height: 4%;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(15, 40, 60, 0.32), transparent 70%);
+  filter: blur(17px);
+  scale: var(--shadow-scale, 1);
+  animation: fs-ground 14s ease-in-out infinite;
+}
+.fs--deep .fs__ground {
+  background: radial-gradient(50% 50% at 50% 50%, rgba(2, 12, 22, 0.55), transparent 70%);
+}
+
+@keyframes fs-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotateZ(0deg) rotateY(0deg); }
+  25%      { transform: translate3d(4px, -13px, 22px) rotateZ(-0.9deg) rotateY(3deg); }
+  50%      { transform: translate3d(0, -20px, 8px) rotateZ(0.4deg) rotateY(0deg); }
+  75%      { transform: translate3d(-4px, -10px, 22px) rotateZ(1deg) rotateY(-3deg); }
+}
+
+@keyframes fs-ground {
+  0%, 100% { opacity: 0.85; width: 86%; }
+  50%      { opacity: 0.5; width: 70%; }
+}
+
+@keyframes fs-pulse {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.04); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fs__drift, .fs__ground, .fs__halo { animation: none; }
+  .fs__sheen { display: none; }
+}
