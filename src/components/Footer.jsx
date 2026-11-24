@@ -3,7 +3,7 @@ import './Footer.css';
 
 const COLS = [
   { title: 'The device', links: [['Purpose', '#purpose'], ['Build', '#build'], ['Safe fit', '#closing']] },
-  { title: 'In practice', links: [['Fitting', '#fitting'], ['In use', '#use'], ['Upkeep', '#upkeep']] },
+  { title: 'In practice', links: [['Fitting', '#fitting'], ['In use', '#use'], ['Upkeep', '#upkeep'], ['Team', '#team']] },
 ];
 
 export default function Footer() {

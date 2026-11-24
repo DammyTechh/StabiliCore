@@ -5,6 +5,7 @@ import Build from './components/Build';
 import Fitting from './components/Fitting';
 import InUse from './components/InUse';
 import Upkeep from './components/Upkeep';
+import Team from './components/Team';
 import Closing from './components/Closing';
 import Footer from './components/Footer';
 import useReveal from './hooks/useReveal';
@@ -23,6 +24,7 @@ export default function App() {
         <Fitting />
         <InUse />
         <Upkeep />
+        <Team />
         <Closing />
       </main>
       <Footer />
